@@ -5,24 +5,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sai Charan | Portfolio</title>
   <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #333;
+      --card-bg: #fff;
+      --accent: #ff9800;
+      --nav-bg: #222;
+      --nav-text: #fff;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #eee;
+      --card-bg: #1e1e1e;
+      --accent: #ff9800;
+      --nav-bg: #000;
+      --nav-text: #ddd;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
-    body { background: #f9f9f9; color: #333; line-height: 1.6; }
-    header { background: #222; color: #fff; padding: 2rem 1rem; text-align: center; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; transition: 0.3s; }
+
+    header {
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      margin-bottom: 1rem;
+    }
     header h1 { font-size: 2.5rem; }
-    header p { font-size: 1.1rem; color: #ddd; }
-    nav { background: #444; text-align: center; padding: 0.6rem; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { color: #ff9800; }
-    section { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-    section h2 { color: #222; margin-bottom: 1rem; border-bottom: 2px solid #ff9800; display: inline-block; padding-bottom: 5px; }
+    header p { font-size: 1.1rem; color: #bbb; }
+
+    nav {
+      background: var(--nav-bg);
+      text-align: center;
+      padding: 0.7rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: var(--nav-text);
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 3rem;
+      animation: fadeIn 1s ease-in;
+    }
+    section h2 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.8rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); }
+
     ul { margin-left: 20px; }
-    .skills span { display: inline-block; background: #ff9800; color: #fff; padding: 6px 12px; border-radius: 20px; margin: 5px; font-size: 0.9rem; }
-    footer { text-align: center; background: #222; color: #fff; padding: 1rem; margin-top: 2rem; }
-    footer a { color: #ff9800; text-decoration: none; }
+
+    .skills span {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin: 5px;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .skills span:hover { background: #e67e00; }
+
+    footer {
+      text-align: center;
+      background: var(--nav-bg);
+      color: var(--nav-text);
+      padding: 1rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    .dark-toggle {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: var(--accent);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .dark-toggle:hover { background: #e67e00; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <header>
+    <button class="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</button>
+    <img src="https://via.placeholder.com/120" alt="Sai Charan">
     <h1>Sai Charan R V</h1>
     <p>Mechanical Design Engineer | CAD & Product Development | Aspiring Software Developer</p>
   </header>
@@ -36,92 +144,131 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Results-driven Mechanical Design Engineer with 2 years of experience in product design and development, 
-      seeking to contribute to innovative, user-centric solutions in a collaborative and forward-thinking engineering 
-      environment. Skilled in CAD, product development, and manufacturing processes, with a strong focus on 
-      efficiency and technical excellence. Passionate about creative problem-solving and continuous improvement.
-    </p>
-  </section>
+  <div class="container">
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>
+          Results-driven Mechanical Design Engineer with 2 years of experience in product design and development, 
+          skilled in CAD, GD&T, and manufacturing processes. Experienced in automotive interiors and packaging design, 
+          with strong focus on efficiency and technical excellence. Passionate about creative problem-solving and 
+          continuous improvement.
+        </p>
+      </div>
+    </section>
 
-  <section id="experience">
-    <h2>Work Experience</h2>
-    <h3>Quest Global Engineering Pvt Ltd. | Bangalore | Jul 2023 – Present</h3>
-    <p><b>Design Engineer</b></p>
-    <h4>Alstom – Train Interior Design</h4>
-    <ul>
-      <li>Designed train interiors using CATIA V5, focusing on ergonomic layout, spatial optimization, and detailing.</li>
-      <li>Prepared 2D drawings using Functional Tolerancing and Annotations (FTA) for Chennai Metro Rail Ltd.</li>
-      <li>Created technical illustrations for pneumatic system assemblies (Delhi Metro Rail Corporation).</li>
-      <li>Performed VAVE (Value Analysis/Value Engineering) for cost optimization and supplier selection.</li>
-      <li>Automated harness wire-list generation using VB-script in CATIA V5 (saved up to 80% project time).</li>
-    </ul>
-    <h4>Procter & Gamble – PackDev R&D (Gillette)</h4>
-    <ul>
-      <li>Designed custom packaging solutions and detailed 3D illustrations using SolidWorks and ArtiosCAD.</li>
-      <li>Interacted with customers to gather requirements and incorporate feedback into design.</li>
-      <li>Supported multiple global manufacturing plants ensuring packaging compliance and consistency.</li>
-      <li>Worked on Siemens NX for CAD and integrated Teamcenter PLM for design management.</li>
-    </ul>
-    <h3>Internship | BEML KGF Complex | 2022</h3>
-    <ul>
-      <li>Gained exposure to Earth Movers, Hydraulics, Powerline, and R&D divisions.</li>
-      <li>Observed large-scale manufacturing of excavators, dumpers, and defense trucks.</li>
-    </ul>
-  </section>
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="card">
+        <h3>Quest Global Engineering Pvt Ltd. | Bangalore | 2023 – Present</h3>
+        <p><b>Design Engineer</b></p>
+        <h4>Alstom – Train Interior Design</h4>
+        <ul>
+          <li>Designed ergonomic and aesthetic train interiors using CATIA V5.</li>
+          <li>Created FTA drawings for Chennai Metro Rail Ltd.</li>
+          <li>Developed technical illustrations for pneumatic assemblies (Delhi Metro).</li>
+          <li>Performed VAVE for cost optimization.</li>
+          <li>Automated harness wire-list with VB script (saved 80% time).</li>
+        </ul>
+        <h4>P&G – PackDev R&D (Gillette)</h4>
+        <ul>
+          <li>Designed packaging using SolidWorks & ArtiosCAD.</li>
+          <li>Interacted with customers and global manufacturing plants.</li>
+          <li>Used Siemens NX + Teamcenter for CAD & PLM integration.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Internship | BEML KGF Complex | 2022</h3>
+        <ul>
+          <li>Exposure to Earth Movers, Hydraulics, and R&D divisions.</li>
+          <li>Observed large-scale production of excavators, dumpers, and defense trucks.</li>
+        </ul>
+      </div>
+    </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <span>CATIA V5</span>
-      <span>Siemens NX</span>
-      <span>SolidWorks</span>
-      <span>Solid Edge</span>
-      <span>ArtiosCAD</span>
-      <span>Teamcenter</span>
-      <span>Enovia</span>
-      <span>DMA</span>
-      <span>GD&T</span>
-      <span>FTA</span>
-      <span>Sheet Metal Design</span>
-      <span>Surface Modeling</span>
-      <span>MATLAB</span>
-      <span>ANSYS</span>
-      <span>Python</span>
-      <span>Basic C++</span>
-      <span>VBA (CATIA & Excel Automation)</span>
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="card skills">
+        <span>CATIA V5</span>
+        <span>Siemens NX</span>
+        <span>SolidWorks</span>
+        <span>Solid Edge</span>
+        <span>ArtiosCAD</span>
+        <span>Teamcenter</span>
+        <span>Enovia</span>
+        <span>GD&T</span>
+        <span>Sheet Metal</span>
+        <span>Surface Modeling</span>
+        <span>MATLAB</span>
+        <span>ANSYS</span>
+        <span>Python</span>
+        <span>VBA (Automation)</span>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="card">
+        <ul>
+          <li><b>B.E. Mechanical Engineering</b> – BIT, Bangalore | CGPA: 8.9 (2019–2023)</li>
+          <li><b>PUC</b> – Golden City PU College, Kolar | 94.4% (2019)</li>
+          <li><b>SSLC</b> – Mahila Samaja High School, Kolar | 97.8% (2017)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="card">
+        <ul>
+          <li><b>Heat Transfer in Porous Cavity (MATLAB)</b> – Published paper in “Materials Today: Proceedings”.</li>
+          <li><b>Industry 4.0 Implementation</b> – Collaborated with Wipro team during BEML training.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:scharanrv@gmail.com">scharanrv@gmail.com</a></p>
+        <p>Phone: <a href="tel:+918073586631">+91 8073586631</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a></p>
+        <p>GitHub: <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></p>
+      </div>
+    </section>
+  </div>
+
+ <footer>
+    <div style="max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:1rem;">
+      
+      <!-- Left side -->
+      <div style="flex:1; min-width:250px; text-align:left; margin:5px;">
+        <p style="margin:0; font-weight:bold;">© 2025 Sai Charan R V</p>
+        <p style="margin:0; font-size:0.9rem; color:#aaa;">Mechanical Design Engineer</p>
+      </div>
+
+      <!-- Middle links -->
+      <div style="flex:1; min-width:250px; text-align:center; margin:5px;">
+        <a href="#about" style="color:var(--accent); margin:0 10px; text-decoration:none;">About</a>
+        <a href="#experience" style="color:var(--accent); margin:0 10px; text-decoration:none;">Experience</a>
+        <a href="#skills" style="color:var(--accent); margin:0 10px; text-decoration:none;">Skills</a>
+        <a href="#projects" style="color:var(--accent); margin:0 10px; text-decoration:none;">Projects</a>
+        <a href="#contact" style="color:var(--accent); margin:0 10px; text-decoration:none;">Contact</a>
+      </div>
+
+      <!-- Right side -->
+      <div style="flex:1; min-width:250px; text-align:right; margin:5px;">
+        <a href="mailto:scharanrv@gmail.com" style="color:var(--accent); margin:0 8px; text-decoration:none;">Email</a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank" style="color:var(--accent); margin:0 8px; text-decoration:none;">LinkedIn</a>
+        <a href="https://github.com/your-username" target="_blank" style="color:var(--accent); margin:0 8px; text-decoration:none;">GitHub</a>
+      </div>
     </div>
-  </section>
-
-  <section id="education">
-    <h2>Education</h2>
-    <ul>
-      <li><b>B.E. Mechanical Engineering</b> – Bangalore Institute of Technology (BIT), VTU | CGPA: 8.9 | 2019–2023</li>
-      <li><b>PUC</b> – Golden City PU College, Kolar | 94.4% | 2019</li>
-      <li><b>SSLC</b> – Mahila Samaja High School, Kolar | 97.8% | 2017</li>
-    </ul>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><b>Free Convection Heat Transfer in Porous Cavity using MATLAB</b> – Published paper in “Materials Today: Proceedings”.</li>
-      <li><b>Industry 4.0 Implementation</b> – Worked with Wipro team during training in BEML Ltd.</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:scharanrv@gmail.com">scharanrv@gmail.com</a></p>
-    <p>Phone: <a href="tel:+918073586631">+91 8073586631</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a></p>
-    <p>GitHub: <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></p>
-  </section>
-
-  <footer>
-    <p>© 2025 Sai Charan R V | Built with ❤ using GitHub Pages</p>
   </footer>
+
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
 </body>
 </html>
