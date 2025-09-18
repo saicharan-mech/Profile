@@ -1,362 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sai Charan | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sai Charan | Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg: #f9f9f9;
+  --text: #333;
+  --card-bg: #fff;
+  --accent: #ff9800;
+  --nav-bg: #222;
+  --nav-text: #fff;
+}
+body.dark {
+  --bg: #121212;
+  --text: #eee;
+  --card-bg: #1e1e1e;
+  --accent: #ff9800;
+  --nav-bg: #000;
+  --nav-text: #ddd;
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", Arial, sans-serif; }
+body { background: var(--bg); color: var(--text); line-height: 1.6; transition: 0.3s; scroll-behavior: smooth; min-height: 2000px; }
 
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+/* HEADER */
+header {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  position: relative;
+}
+header h1 { font-size: 2.5rem; }
+header .role { font-weight: bold; font-size: 1.2rem; margin: 0.2rem 0; }
+header p { font-size: 1.1rem; color: #bbb; margin-bottom: 1rem; }
+.resume-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.resume-btn:hover { background: #e67e00; }
 
-  <style>
-    :root {
-      --bg: #f9f9f9;
-      --text: #333;
-      --card-bg: #fff;
-      --accent: #ff9800;
-      --nav-bg: #222;
-      --nav-text: #fff;
-    }
-    body.dark {
-      --bg: #121212;
-      --text: #eee;
-      --card-bg: #1e1e1e;
-      --accent: #ff9800;
-      --nav-bg: #000;
-      --nav-text: #ddd;
-    }
+/* HEADER CONTROLS */
+.header-controls {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dark-toggle {
+  background: var(--accent);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.dark-toggle:hover { background: #e67e00; }
+/* SCROLL PIE INDICATOR */
+.scroll-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) 0deg, var(--accent) 0deg, transparent 0deg);
+  position: relative;
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.6; transition: 0.3s; scroll-behavior: smooth; }
+/* NAVIGATION */
+nav {
+  background: var(--nav-bg);
+  text-align: center;
+  padding: 0.7rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav a {
+  color: var(--nav-text);
+  margin: 0 8px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: 0.3s;
+  display: inline-block;
+}
+nav a:hover, nav a.active { background: var(--accent); color: #fff; }
 
-    /* HEADER */
-    header {
-      background: var(--nav-bg);
-      color: var(--nav-text);
-      text-align: center;
-      padding: 2rem 1rem 3rem;
-      position: relative;
-    }
-    header h1 { font-size: 2.5rem; }
-    header p { font-size: 1.1rem; color: #bbb; margin-bottom: 1rem; }
+/* SECTIONS */
+.container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+section { margin-bottom: 3rem; animation: fadeIn 1s ease-in; border-radius: 15px; padding: 2rem 1rem; }
+section h2 { margin-bottom: 1rem; color: var(--accent); font-size: 1.8rem; }
+/* Section colors */
+#about { background:#fff7e6; }
+#experience { background:#e6f7ff; }
+#skills { background:#f0ffe6; }
+#education { background:#fff0f6; }
+#projects { background:#f9f9f9; }
+#contact { background:#f0f0ff; }
 
-    /* Resume Button */
-    .resume-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .resume-btn:hover { background: #e67e00; }
+/* CARDS */
+.card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-5px); }
 
-    /* DARK MODE BUTTON */
-    .dark-toggle {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      background: var(--accent);
-      border: none;
-      padding: 8px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      color: #fff;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .dark-toggle:hover { background: #e67e00; }
+/* TIMELINE */
+.timeline { position: relative; margin: 2rem 0; padding-left: 40px; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.timeline-item { margin-bottom: 2rem; position: relative; }
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.timeline-item h3 { margin-bottom: 0.2rem; }
+.timeline-item h4 { margin: 0.5rem 0; color: var(--accent); }
 
-    /* NAVIGATION (TABS) */
-    nav {
-      background: var(--nav-bg);
-      text-align: center;
-      padding: 0.7rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav a {
-      color: var(--nav-text);
-      margin: 0 8px;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 25px;
-      transition: 0.3s;
-      display: inline-block;
-    }
-    nav a:hover { background: var(--accent); color: #fff; }
-    nav a.active { background: var(--accent); color: #fff; }
+/* SKILLS */
+.skills span {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin: 5px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+.skills span:hover { background: #e67e00; }
 
-    /* SECTIONS */
-    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-    section { margin-bottom: 3rem; animation: fadeIn 1s ease-in; border-radius: 15px; padding: 2rem 1rem; }
-    section h2 { margin-bottom: 1rem; color: var(--accent); font-size: 1.8rem; }
+/* FOOTER */
+footer {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  padding: 1rem;
+  margin-top: 2rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer .footer-container { max-width:1000px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; }
+footer .left, footer .middle, footer .right { flex:1; min-width:250px; margin:5px; }
+footer .middle { text-align:center; }
+footer .right { text-align:right; font-size:1.3rem; }
+footer a:hover { color:#e67e00; }
 
-    /* Section colors */
-    #about { background:#fff7e6; }
-    #experience { background:#e6f7ff; }
-    #skills { background:#f0ffe6; }
-    #education { background:#fff0f6; }
-    #projects { background:#f9f9f9; }
-    #contact { background:#f0f0ff; }
+/* ANIMATION */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* CARDS */
-    .card {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 15px;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-    .card:hover { transform: translateY(-5px); }
-
-    /* EXPERIENCE TIMELINE */
-    .timeline {
-      position: relative;
-      margin: 2rem 0;
-      padding-left: 40px;
-    }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 15px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
-    .timeline-item {
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -5px;
-      top: 10px;
-      width: 16px;
-      height: 16px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-    .timeline-item h3 { margin-bottom: 0.2rem; }
-    .timeline-item h4 { margin: 0.5rem 0; color: var(--accent); }
-
-    /* SKILLS */
-    .skills span {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 20px;
-      margin: 5px;
-      font-size: 0.9rem;
-      transition: 0.3s;
-    }
-    .skills span:hover { background: #e67e00; }
-
-    /* FOOTER */
-    footer {
-      background: var(--nav-bg);
-      color: var(--nav-text);
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer .footer-container {
-      max-width:1000px;
-      margin:auto;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:space-between;
-      align-items:center;
-    }
-    footer .left, footer .middle, footer .right { flex:1; min-width:250px; margin:5px; }
-    footer .middle { text-align:center; }
-    footer .right { text-align:right; font-size:1.3rem; }
-    footer a:hover { color:#e67e00; }
-
-    /* ANIMATION */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+/* RESPONSIVE */
+@media(max-width:768px) {
+  header h1 { font-size:2rem; }
+  header .role, header p { font-size:0.9rem; }
+  .header-controls { flex-direction: row; gap:8px; }
+  nav a { margin:4px 4px; padding:6px 12px; }
+}
+</style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <button class="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</button>
-    <h1>Sai Charan R V</h1>
-    <p>Mechanical Design Engineer | CAD & Product Development | Aspiring Software Developer</p>
-    <a href="SaiCharan_DesignEngineer-1.pdf" class="resume-btn" download>
-      <i class="fas fa-download"></i> Download Resume
-    </a>
-  </header>
-
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- MAIN CONTENT -->
-  <div class="container">
-    <section id="about">
-      <h2>About Me</h2>
-      <div class="card">
-        <p>
-          Results-driven Mechanical Design Engineer with 2 years of experience in product design and development, 
-          skilled in CAD, GD&T, and manufacturing processes. Experienced in automotive interiors and packaging design, 
-          with strong focus on efficiency and technical excellence. Passionate about creative problem-solving and 
-          continuous improvement.
-        </p>
-      </div>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>Quest Global Engineering Pvt Ltd. | Bangalore | 2023 – Present</h3>
-          <h4>Design Engineer</h4>
-          <p><b>Alstom – Train Interior Design</b></p>
-          <ul>
-            <li>Designed ergonomic and aesthetic train interiors using CATIA V5.</li>
-            <li>Created FTA drawings for Chennai Metro Rail Ltd.</li>
-            <li>Developed technical illustrations for pneumatic assemblies (Delhi Metro).</li>
-            <li>Performed VAVE for cost optimization.</li>
-            <li>Automated harness wire-list with VB script (saved 80% time).</li>
-          </ul>
-          <p><b>P&G – PackDev R&D (Gillette)</b></p>
-          <ul>
-            <li>Designed packaging using SolidWorks & ArtiosCAD.</li>
-            <li>Interacted with customers and global manufacturing plants.</li>
-            <li>Used Siemens NX + Teamcenter for CAD & PLM integration.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h3>Internship | BEML KGF Complex | 2022</h3>
-          <ul>
-            <li>Exposure to Earth Movers, Hydraulics, and R&D divisions.</li>
-            <li>Observed large-scale production of excavators, dumpers, and defense trucks.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="card skills">
-        <span>CATIA V5</span>
-        <span>Siemens NX</span>
-        <span>SolidWorks</span>
-        <span>Solid Edge</span>
-        <span>ArtiosCAD</span>
-        <span>Teamcenter</span>
-        <span>Enovia</span>
-        <span>GD&T</span>
-        <span>Sheet Metal</span>
-        <span>Surface Modeling</span>
-        <span>MATLAB</span>
-        <span>ANSYS</span>
-        <span>Python</span>
-        <span>VBA (Automation)</span>
-      </div>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <div class="card">
-        <ul>
-          <li><b>B.E. Mechanical Engineering</b> – BIT, Bangalore | CGPA: 8.9 (2019–2023)</li>
-          <li><b>PUC</b> – Golden City PU College, Kolar | 94.4% (2019)</li>
-          <li><b>SSLC</b> – Mahila Samaja High School, Kolar | 97.8% (2017)</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="card">
-        <ul>
-          <li><b>Heat Transfer in Porous Cavity (MATLAB)</b> – Published paper in “Materials Today: Proceedings”.</li>
-          <li><b>Industry 4.0 Implementation</b> – Collaborated with Wipro team during BEML training.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
-        <p><i class="fas fa-envelope"></i> <a href="mailto:scharanrv@gmail.com">scharanrv@gmail.com</a></p>
-        <p><i class="fas fa-phone"></i> <a href="tel:+918073586631">+91 8073586631</a></p>
-        <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a></p>
-        <p><i class="fab fa-github"></i> <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></p>
-      </div>
-    </section>
+<header>
+  <div class="header-controls">
+    <div class="scroll-circle" id="scrollCircle"></div>
+    <button class="dark-toggle" onclick="toggleDark()">🌙</button>
   </div>
+  <h1>Sai Charan R V</h1>
+  <div class="role">Mechanical Design Engineer</div>
+  <p>CAD & Product Development | Aspiring Software Developer</p>
+  <a href="SaiCharan_DesignEngineer-1.pdf" class="resume-btn" download><i class="fas fa-download"></i> Download Resume</a>
+</header>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-container">
-      <div class="left">
-        <p style="margin:0; font-weight:bold;">© 2025 Sai Charan R V</p>
-        <p style="margin:0; font-size:0.9rem; color:#aaa;">Mechanical Design Engineer</p>
-      </div>
-      <div class="middle">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="right">
-        <a href="mailto:scharanrv@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="tel:+918073586631" title="Phone"><i class="fas fa-phone"></i></a>
-        <a href="https://linkedin.com/in/your-profile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/your-username" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+<nav>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      Results-driven Mechanical Design Engineer with 2 years of experience in product design and development...
+    </div>
+  </section>
+  <!-- Experience Section -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Quest Global | Bangalore | 2023 – Present</h3>
+        <h4>Design Engineer</h4>
+        <p><b>Alstom – Train Interior Design</b></p>
+        <ul>
+          <li>Designed ergonomic train interiors using CATIA V5.</li>
+          <li>FTA drawings for Chennai Metro Rail Ltd.</li>
+        </ul>
+        <p><b>P&G – PackDev R&D (Gillette)</b></p>
+        <ul>
+          <li>Packaging design using SolidWorks & ArtiosCAD.</li>
+        </ul>
       </div>
     </div>
-  </footer>
+  </section>
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="card skills">
+      <span>CATIA V5</span><span>Siemens NX</span><span>SolidWorks</span><span>ArtiosCAD</span><span>Teamcenter</span>
+      <span>Enovia</span><span>GD&T</span><span>Python</span><span>VBA</span>
+    </div>
+  </section>
+  <!-- Education Section -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="card">
+      <ul>
+        <li><b>B.E. Mechanical Engineering</b> – BIT, Bangalore | CGPA: 8.9 (2019–2023)</li>
+      </ul>
+    </div>
+  </section>
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card">
+      <ul>
+        <li><b>Heat Transfer in Porous Cavity (MATLAB)</b> – Published paper in Materials Today: Proceedings.</li>
+      </ul>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p><i class="fas fa-envelope"></i> <a href="mailto:scharanrv@gmail.com">scharanrv@gmail.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+918073586631">+91 8073586631</a></p>
+      <p><i class="fab fa-linkedin"></i> <a href="#" target="_blank">LinkedIn</a></p>
+      <p><i class="fab fa-github"></i> <a href="#" target="_blank">GitHub</a></p>
+    </div>
+  </section>
+</div>
 
-  <!-- JAVASCRIPT -->
-  <script>
-    // Dark Mode Toggle
-    function toggleDark() {
-      document.body.classList.toggle("dark");
-    }
+<footer>
+  <div class="footer-container">
+    <div class="left">
+      <p style="margin:0;font-weight:bold;">© 2025 Sai Charan R V</p>
+      <p style="margin:0;font-size:0.9rem;color:#aaa;">Mechanical Design Engineer</p>
+    </div>
+    <div class="middle">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="right">
+      <a href="mailto:scharanrv@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+918073586631"><i class="fas fa-phone"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
 
-    // Active Tab Highlight
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav a");
+<script>
+  // Dark Mode Toggle
+  function toggleDark() { document.body.classList.toggle("dark"); }
 
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+  // Active Tab Highlight
+  const sections = document.query
