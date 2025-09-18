@@ -27,18 +27,31 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.6; transition: 0.3s; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; transition: 0.3s; scroll-behavior: smooth; }
 
     /* HEADER */
     header {
       background: var(--nav-bg);
       color: var(--nav-text);
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 3rem;
       position: relative;
     }
     header h1 { font-size: 2.5rem; }
-    header p { font-size: 1.1rem; color: #bbb; }
+    header p { font-size: 1.1rem; color: #bbb; margin-bottom: 1rem; }
+
+    /* Resume Button */
+    .resume-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .resume-btn:hover { background: #e67e00; }
 
     /* DARK MODE BUTTON */
     .dark-toggle {
@@ -102,8 +115,38 @@
     }
     .card:hover { transform: translateY(-5px); }
 
-    /* LISTS */
-    ul { margin-left: 20px; }
+    /* EXPERIENCE TIMELINE */
+    .timeline {
+      position: relative;
+      margin: 2rem 0;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 10px;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .timeline-item h3 { margin-bottom: 0.2rem; }
+    .timeline-item h4 { margin: 0.5rem 0; color: var(--accent); }
 
     /* SKILLS */
     .skills span {
@@ -152,6 +195,9 @@
     <button class="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</button>
     <h1>Sai Charan R V</h1>
     <p>Mechanical Design Engineer | CAD & Product Development | Aspiring Software Developer</p>
+    <a href="SaiCharan_DesignEngineer-1.pdf" class="resume-btn" download>
+      <i class="fas fa-download"></i> Download Resume
+    </a>
   </header>
 
   <!-- NAVIGATION -->
@@ -180,30 +226,33 @@
 
     <section id="experience">
       <h2>Experience</h2>
-      <div class="card">
-        <h3>Quest Global Engineering Pvt Ltd. | Bangalore | 2023 – Present</h3>
-        <p><b>Design Engineer</b></p>
-        <h4>Alstom – Train Interior Design</h4>
-        <ul>
-          <li>Designed ergonomic and aesthetic train interiors using CATIA V5.</li>
-          <li>Created FTA drawings for Chennai Metro Rail Ltd.</li>
-          <li>Developed technical illustrations for pneumatic assemblies (Delhi Metro).</li>
-          <li>Performed VAVE for cost optimization.</li>
-          <li>Automated harness wire-list with VB script (saved 80% time).</li>
-        </ul>
-        <h4>P&G – PackDev R&D (Gillette)</h4>
-        <ul>
-          <li>Designed packaging using SolidWorks & ArtiosCAD.</li>
-          <li>Interacted with customers and global manufacturing plants.</li>
-          <li>Used Siemens NX + Teamcenter for CAD & PLM integration.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Internship | BEML KGF Complex | 2022</h3>
-        <ul>
-          <li>Exposure to Earth Movers, Hydraulics, and R&D divisions.</li>
-          <li>Observed large-scale production of excavators, dumpers, and defense trucks.</li>
-        </ul>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>Quest Global Engineering Pvt Ltd. | Bangalore | 2023 – Present</h3>
+          <h4>Design Engineer</h4>
+          <p><b>Alstom – Train Interior Design</b></p>
+          <ul>
+            <li>Designed ergonomic and aesthetic train interiors using CATIA V5.</li>
+            <li>Created FTA drawings for Chennai Metro Rail Ltd.</li>
+            <li>Developed technical illustrations for pneumatic assemblies (Delhi Metro).</li>
+            <li>Performed VAVE for cost optimization.</li>
+            <li>Automated harness wire-list with VB script (saved 80% time).</li>
+          </ul>
+          <p><b>P&G – PackDev R&D (Gillette)</b></p>
+          <ul>
+            <li>Designed packaging using SolidWorks & ArtiosCAD.</li>
+            <li>Interacted with customers and global manufacturing plants.</li>
+            <li>Used Siemens NX + Teamcenter for CAD & PLM integration.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Internship | BEML KGF Complex | 2022</h3>
+          <ul>
+            <li>Exposure to Earth Movers, Hydraulics, and R&D divisions.</li>
+            <li>Observed large-scale production of excavators, dumpers, and defense trucks.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
