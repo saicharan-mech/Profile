@@ -1,219 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sai Charan | Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sai Charan R V — Portfolio</title>
 
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    :root {
-      --bg: #f9f9f9;
-      --text: #333;
-      --card-bg: #fff;
-      --accent: #ff9800;
-      --nav-bg: #222;
-      --nav-text: #fff;
+    :root{
+      --accent:#ff9800;
+      --bg:#f9f9f9;
+      --text:#222;
+      --card:#ffffff;
+      --muted:#7a7a7a;
+      --nav:#222;
     }
-    body.dark {
-      --bg: #121212;
-      --text: #eee;
-      --card-bg: #1e1e1e;
-      --accent: #ff9800;
-      --nav-bg: #000;
-      --nav-text: #ddd;
+    body.dark{
+      --bg:#0f1113;
+      --text:#e6e6e6;
+      --card:#16181a;
+      --muted:#9a9a9a;
+      --nav:#000;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      scroll-behavior:smooth;
+      transition:background .25s,color .25s;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.6; transition: 0.3s; scroll-behavior: smooth; }
+    /* TOP SCROLL PROGRESS BAR */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 9999;
+      transition: width 0.15s ease;
+    }
 
     /* HEADER */
     header {
-      background: var(--nav-bg);
-      color: var(--nav-text);
-      text-align: center;
-      padding: 2rem 1rem;
+      background:var(--nav);
+      color: #fff;
+      padding: 28px 20px 36px;
+      text-align:center;
       position: relative;
     }
-    header h1 { font-size: 2.5rem; }
-    header p { font-size: 1.1rem; color: #bbb; margin-top: 0.5rem; }
+    header h1{font-size:32px; margin:0 0 6px; letter-spacing:0.2px}
+    header .role{font-weight:700; font-size:16px; color:var(--accent); margin-bottom:6px}
+    header .tagline{color:#ddd; font-size:14px; min-height:22px}
 
-    /* DROPDOWN MENU (3 DOTS) */
-    .menu {
+    /* top-right menu */
+    .top-menu {
       position: absolute;
       top: 15px;
-      right: 20px;
+      right: 16px;
+      z-index: 50;
     }
-    .menu-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--accent);
-      cursor: pointer;
+    .menu-btn{
+      background:transparent;
+      border:0;
+      color:var(--accent);
+      font-size:18px;
+      padding:6px 8px;
+      border-radius:8px;
+      cursor:pointer;
     }
-    .dropdown {
-      display: none;
-      position: absolute;
-      right: 0;
-      background: var(--card-bg);
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      min-width: 180px;
-      z-index: 200;
+    .menu-btn:hover{background:rgba(255,152,0,0.08)}
+    .dropdown{
+      display:none;
+      position:absolute;
+      right:0;
+      margin-top:8px;
+      background:var(--card);
+      color:var(--text);
+      border-radius:8px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.12);
+      overflow:hidden;
+      min-width:200px;
     }
     .dropdown a, .dropdown button {
-      display: block;
-      padding: 10px 15px;
-      text-align: left;
-      color: var(--text);
-      background: none;
-      border: none;
-      width: 100%;
-      font-size: 0.95rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.2s;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      text-decoration:none;
+      color:inherit;
+      background:transparent;
+      border:0;
+      width:100%;
+      text-align:left;
+      font-size:14px;
+      cursor:pointer;
     }
-    .dropdown a:hover, .dropdown button:hover {
-      background: var(--accent);
-      color: #fff;
+    .dropdown a:hover, .dropdown button:hover{ background:var(--accent); color:#fff }
+
+    /* NAV (tabs) */
+    nav{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      background:var(--nav);
+      padding:10px 12px;
+      position:sticky;
+      top:0;
+      z-index:90;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      padding:8px 16px;
+      border-radius:30px;
+      font-weight:600;
+      transition: all .18s;
+      font-size:14px;
+    }
+    nav a:hover{ background:var(--accent); color:#fff }
+    nav a.active{ background:var(--accent); color:#fff; box-shadow:0 6px 18px rgba(255,152,0,0.18) }
+
+    /* CONTAINER */
+    .container{ max-width:1100px; margin:28px auto; padding:0 18px; }
+
+    /* SECTIONS: pastel backgrounds, radius, spacing */
+    section{
+      border-radius:14px;
+      padding:22px;
+      margin-bottom:20px;
+      transition: background .35s, color .35s;
+    }
+    #about{ background:#fff7e6 }
+    #experience{ background:#e6f7ff }
+    #skills{ background:#f0ffe6 }
+    #education{ background:#fff0f6 }
+    #projects{ background:#f9f9f9 }
+    #contact{ background:#f0f0ff }
+
+    section h2{
+      color:var(--accent);
+      margin:0 0 12px;
+      font-size:20px;
     }
 
-    /* NAVIGATION (TABS) */
-    nav {
-      background: var(--nav-bg);
-      text-align: center;
-      padding: 0.7rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .card{
+      background:var(--card);
+      padding:14px;
+      border-radius:12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      color:var(--text);
     }
-    nav a {
-      color: var(--nav-text);
-      margin: 0 8px;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 25px;
-      transition: 0.3s;
-      display: inline-block;
-    }
-    nav a:hover { background: var(--accent); color: #fff; }
-    nav a.active { background: var(--accent); color: #fff; }
 
-    /* SECTIONS */
-    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-    section { margin-bottom: 3rem; animation: fadeIn 1s ease-in; border-radius: 15px; padding: 2rem 1rem; }
-    section h2 { margin-bottom: 1rem; color: var(--accent); font-size: 1.8rem; }
+    /* TIMELINE */
+    .timeline{
+      position:relative;
+      padding-left:34px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:18px;
+      top:8px;
+      bottom:8px;
+      width:4px;
+      background:var(--accent);
+      border-radius:4px;
+      opacity:0.95;
+    }
+    .tl-item{
+      position:relative;
+      margin-bottom:22px;
+      padding:10px 12px;
+    }
+    .tl-item::before{
+      content:"";
+      position:absolute;
+      left:-5px;
+      top:16px;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:var(--card);
+      border:4px solid var(--accent);
+    }
+    .tl-item h3{ margin:0 0 4px; font-size:16px }
+    .tl-item h4{ margin:4px 0; color:var(--muted); font-weight:600; font-size:13px }
 
-    /* Section colors */
-    #about { background:#fff7e6; }
-    #experience { background:#e6f7ff; }
-    #skills { background:#f0ffe6; }
-    #education { background:#fff0f6; }
-    #projects { background:#f9f9f9; }
-    #contact { background:#f0f0ff; }
+    /* SKILL BARS */
+    .skill-row{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+    .skill-name{ width:140px; font-weight:600; font-size:14px; color:var(--muted) }
+    .skill-bar{
+      flex:1;
+      height:12px;
+      background:rgba(0,0,0,0.06);
+      border-radius:8px;
+      overflow:hidden;
+    }
+    .skill-bar-inner{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--accent), #e67e00);
+      border-radius:8px;
+      transition: width 1s ease;
+    }
+    .skill-percent{ width:48px; text-align:right; font-size:13px; color:var(--muted) }
 
-    /* CARDS */
-    .card {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 15px;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+    /* PROJECT GRID */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
     }
-    .card:hover { transform: translateY(-5px); }
+    .project-card{
+      padding:14px;
+      border-radius:12px;
+      background:var(--card);
+      box-shadow:0 8px 20px rgba(0,0,0,0.06);
+    }
+    .project-card .title{ font-weight:700; margin-bottom:8px }
+    .project-card .desc{ font-size:14px; color:var(--muted) }
 
-    /* EXPERIENCE TIMELINE */
-    .timeline {
-      position: relative;
-      margin: 2rem 0;
-      padding-left: 40px;
-    }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 15px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
-    .timeline-item {
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -5px;
-      top: 10px;
-      width: 16px;
-      height: 16px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-    .timeline-item h3 { margin-bottom: 0.2rem; }
-    .timeline-item h4 { margin: 0.5rem 0; color: var(--accent); }
-
-    /* SKILLS */
-    .skills span {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 20px;
-      margin: 5px;
-      font-size: 0.9rem;
-      transition: 0.3s;
-    }
-    .skills span:hover { background: #e67e00; }
+    /* CONTACT */
+    .contact-list p{ margin:8px 0; font-weight:600 }
+    .contact-list a{ color:var(--accent); text-decoration:none }
 
     /* FOOTER */
-    footer {
-      background: var(--nav-bg);
-      color: var(--nav-text);
-      padding: 1rem;
-      margin-top: 2rem;
+    footer{
+      margin-top:26px;
+      padding:18px 12px;
+      background:var(--nav);
+      color:#fff;
     }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer .footer-container {
-      max-width:1000px;
-      margin:auto;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:space-between;
-      align-items:center;
-    }
-    footer .left, footer .middle, footer .right { flex:1; min-width:250px; margin:5px; }
-    footer .middle { text-align:center; }
-    footer .right { text-align:right; font-size:1.3rem; }
-    footer a:hover { color:#e67e00; }
+    .footer-inner{ max-width:1100px; margin:0 auto; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+    .footer-left{ font-weight:700 }
+    .footer-links a{ color:var(--accent); margin:0 8px; text-decoration:none }
+    .footer-social a{ color:var(--accent); margin-left:10px; font-size:18px }
 
-    /* ANIMATION */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Back to top */
+    #backTop{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      background:var(--accent);
+      color:#fff;
+      border:0;
+      padding:10px 12px;
+      border-radius:10px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      cursor:pointer;
+      display:none;
+      z-index:999;
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .projects-grid{ grid-template-columns:repeat(2,1fr) }
+      .skill-name{ width:120px }
+      nav{ padding:8px }
+    }
+    @media (max-width:640px){
+      .projects-grid{ grid-template-columns:1fr }
+      .timeline{ padding-left:22px }
+      .timeline::before{ left:12px }
+      .tl-item::before{ left:-9px }
+      header h1{ font-size:22px }
+      header .role{ font-size:14px }
+      .footer-inner{ flex-direction:column; align-items:flex-start }
     }
   </style>
 </head>
 <body>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
   <!-- HEADER -->
   <header>
-    <button class="dark-toggle" onclick="toggleDark()">🌙 Dark Mode</button>
+    <div class="top-menu">
+      <button class="menu-btn" id="menuBtn" aria-haspopup="true" aria-expanded="false" title="Menu">
+        <i class="fas fa-user-circle"></i>
+      </button>
+      <div class="dropdown" id="menuDropdown" role="menu" aria-hidden="true">
+        <button id="toggleDark" role="menuitem"><i class="fas fa-moon"></i> Toggle Dark Mode</button>
+        <a href="SaiCharan_DesignEngineer-1.pdf" download role="menuitem"><i class="fas fa-download"></i> Download Resume</a>
+      </div>
+    </div>
+
     <h1>Sai Charan R V</h1>
-    <p>Mechanical Design Engineer | CAD & Product Development | Aspiring Software Developer</p>
-    <a href="SaiCharan_DesignEngineer-1.pdf" class="resume-btn" download>
-      <i class="fas fa-download"></i> Download Resume
-    </a>
+    <div class="role">Mechanical Design Engineer</div>
+    <div class="tagline"><span id="typeText"></span></div>
   </header>
 
-  <!-- NAVIGATION -->
-  <nav>
+  <!-- NAV -->
+  <nav id="topNav" aria-label="Main Navigation">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
@@ -222,119 +311,125 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
-    <section id="about">
-      <h2>About Me</h2>
+  <!-- MAIN -->
+  <main class="container">
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="aboutHeading">
+      <h2 id="aboutHeading">About Me</h2>
       <div class="card">
         <p>
-          Results-driven Mechanical Design Engineer with 2 years of experience in product design and development, 
-          skilled in CAD, GD&T, and manufacturing processes. Experienced in automotive interiors and packaging design, 
-          with strong focus on efficiency and technical excellence. Passionate about creative problem-solving and 
-          continuous improvement.
+          Results-driven Mechanical Design Engineer with 2 years of experience in product design and development,
+          skilled in CAD, GD&T, and manufacturing processes. Experienced in railway interiors and packaging R&D with
+          a focus on efficiency, producibility, and continuous improvement.
         </p>
       </div>
     </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="experienceHeading">
+      <h2 id="experienceHeading">Experience</h2>
       <div class="timeline">
-        <div class="timeline-item">
-          <h3>Quest Global Engineering Pvt Ltd. | Bangalore | 2023 – Present</h3>
-          <h4>Design Engineer</h4>
-          <p><b>Alstom – Train Interior Design</b></p>
-          <ul>
-            <li>Designed ergonomic and aesthetic train interiors using CATIA V5.</li>
-            <li>Created FTA drawings for Chennai Metro Rail Ltd.</li>
-            <li>Developed technical illustrations for pneumatic assemblies (Delhi Metro).</li>
-            <li>Performed VAVE for cost optimization.</li>
-            <li>Automated harness wire-list with VB script (saved 80% time).</li>
-          </ul>
-          <p><b>P&G – PackDev R&D (Gillette)</b></p>
-          <ul>
-            <li>Designed packaging using SolidWorks & ArtiosCAD.</li>
-            <li>Interacted with customers and global manufacturing plants.</li>
-            <li>Used Siemens NX + Teamcenter for CAD & PLM integration.</li>
-          </ul>
+        <div class="tl-item">
+          <h3>Quest Global Engineering Pvt Ltd — Design Engineer (Jul 2023 – Present)</h3>
+          <h4>Alstom — Train Interiors</h4>
+          <div class="card">
+            <ul>
+              <li>Designed ergonomic and aesthetic train interiors using CATIA V5.</li>
+              <li>Prepared FTA drawings for Chennai Metro Rail Ltd and technical illustrations for Delhi Metro.</li>
+              <li>Performed VAVE for cost optimization and supplier selection.</li>
+              <li>Automated harness wire-list generation using VBScript (reduced task time by ~80%).</li>
+            </ul>
+            <hr>
+            <h4>P&G — PackDev R&D (Gillette)</h4>
+            <ul>
+              <li>Created packaging designs and 3D illustrations using SolidWorks & ArtiosCAD.</li>
+              <li>Worked with Siemens NX and integrated Teamcenter PLM for design management.</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="timeline-item">
-          <h3>Internship | BEML KGF Complex | 2022</h3>
-          <ul>
-            <li>Exposure to Earth Movers, Hydraulics, and R&D divisions.</li>
-            <li>Observed large-scale production of excavators, dumpers, and defense trucks.</li>
-          </ul>
+        <div class="tl-item">
+          <h3>Internship — BEML KGF Complex (2022)</h3>
+          <div class="card">
+            <ul>
+              <li>Exposure to Earth Movers, Hydraulics, and R&D divisions.</li>
+              <li>Observed large-scale manufacturing of excavators, dumpers, and defense trucks.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="card skills">
-        <span>CATIA V5</span>
-        <span>Siemens NX</span>
-        <span>SolidWorks</span>
-        <span>Solid Edge</span>
-        <span>ArtiosCAD</span>
-        <span>Teamcenter</span>
-        <span>Enovia</span>
-        <span>GD&T</span>
-        <span>Sheet Metal</span>
-        <span>Surface Modeling</span>
-        <span>MATLAB</span>
-        <span>ANSYS</span>
-        <span>Python</span>
-        <span>VBA (Automation)</span>
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skillsHeading">
+      <h2 id="skillsHeading">Skills</h2>
+      <div class="card" aria-hidden="false">
+        <!-- Skill rows: adjust percentage in data-percent attr -->
+        <div class="skill-row"><div class="skill-name">CATIA V5</div><div class="skill-bar"><div class="skill-bar-inner" data-percent="90"></div></div><div class="skill-percent">90%</div></div>
+        <div class="skill-row"><div class="skill-name">Siemens NX</div><div class="skill-bar"><div class="skill-bar-inner" data-percent="85"></div></div><div class="skill-percent">85%</div></div>
+        <div class="skill-row"><div class="skill-name">SolidWorks</div><div class="skill-bar"><div class="skill-bar-inner" data-percent="80"></div></div><div class="skill-percent">80%</div></div>
+        <div class="skill-row"><div class="skill-name">ArtiosCAD</div><div class="skill-bar"><div class="skill-bar-inner" data-percent="75"></div></div><div class="skill-percent">75%</div></div>
+        <div class="skill-row"><div class="skill-name">GD&T / FTA</div><div class="skill-bar"><div class="skill-bar-inner" data-percent="85"></div></div><div class="skill-percent">85%</div></div>
+        <div class="skill-row"><div class="skill-name">VBA (Automation)</div><div class="skill-bar"><div class="skill-bar-inner" data-percent="70"></div></div><div class="skill-percent">70%</div></div>
+        <div class="skill-row"><div class="skill-name">Python (Learning)</div><div class="skill-bar"><div class="skill-bar-inner" data-percent="60"></div></div><div class="skill-percent">60%</div></div>
       </div>
     </section>
 
-    <section id="education">
-      <h2>Education</h2>
+    <!-- EDUCATION -->
+    <section id="education" aria-labelledby="educationHeading">
+      <h2 id="educationHeading">Education</h2>
       <div class="card">
         <ul>
-          <li><b>B.E. Mechanical Engineering</b> – BIT, Bangalore | CGPA: 8.9 (2019–2023)</li>
-          <li><b>PUC</b> – Golden City PU College, Kolar | 94.4% (2019)</li>
-          <li><b>SSLC</b> – Mahila Samaja High School, Kolar | 97.8% (2017)</li>
+          <li><strong>B.E. Mechanical Engineering</strong> — Bangalore Institute of Technology (BIT), VTU — CGPA: 8.9 (2019–2023)</li>
+          <li><strong>PUC</strong> — Golden City PU College, Kolar — 94.4% (2019)</li>
+          <li><strong>SSLC</strong> — Mahila Samaja High School, Kolar — 97.8% (2017)</li>
         </ul>
       </div>
     </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="card">
-        <ul>
-          <li><b>Heat Transfer in Porous Cavity (MATLAB)</b> – Published paper in “Materials Today: Proceedings”.</li>
-          <li><b>Industry 4.0 Implementation</b> – Collaborated with Wipro team during BEML training.</li>
-        </ul>
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projectsHeading">
+      <h2 id="projectsHeading">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="title">Heat Transfer in Porous Cavity (MATLAB)</div>
+          <div class="desc">Published: "Effect of Aspect Ratio on the Onset of Natural Convection in Porous Trapezoidal Enclosures" — Materials Today: Proceedings.</div>
+        </div>
+        <div class="project-card">
+          <div class="title">Industry 4.0 Implementation</div>
+          <div class="desc">Collaborated with Wipro team for manufacturing digitization during BEML training.</div>
+        </div>
+        <div class="project-card">
+          <div class="title">Automation Tools</div>
+          <div class="desc">VBScript automation in CATIA for harness wire-list generation (improved throughput).</div>
+        </div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contactHeading">
+      <h2 id="contactHeading">Contact</h2>
+      <div class="card contact-list">
         <p><i class="fas fa-envelope"></i> <a href="mailto:scharanrv@gmail.com">scharanrv@gmail.com</a></p>
         <p><i class="fas fa-phone"></i> <a href="tel:+918073586631">+91 8073586631</a></p>
         <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a></p>
         <p><i class="fab fa-github"></i> <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></p>
       </div>
     </section>
-  </div>
+  </main>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-container">
-      <div class="left">
-        <p style="margin:0; font-weight:bold;">© 2025 Sai Charan R V</p>
-        <p style="margin:0; font-size:0.9rem; color:#aaa;">Mechanical Design Engineer</p>
-      </div>
-      <div class="middle">
+    <div class="footer-inner">
+      <div class="footer-left">© 2025 Sai Charan R V</div>
+      <div class="footer-links">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </div>
-      <div class="right">
+      <div class="footer-social">
         <a href="mailto:scharanrv@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="tel:+918073586631" title="Phone"><i class="fas fa-phone"></i></a>
         <a href="https://linkedin.com/in/your-profile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -343,31 +438,120 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT -->
+  <!-- BACK TO TOP -->
+  <button id="backTop" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- SCRIPTS -->
   <script>
-    // Dark Mode Toggle
-    function toggleDark() {
-      document.body.classList.toggle("dark");
+    // ELEMENTS
+    const menuBtn = document.getElementById('menuBtn');
+    const menuDropdown = document.getElementById('menuDropdown');
+    const toggleDark = document.getElementById('toggleDark');
+    const progress = document.getElementById('scroll-progress');
+    const backTop = document.getElementById('backTop');
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('main section');
+    const skillInners = document.querySelectorAll('.skill-bar-inner');
+
+    // Dropdown toggle
+    menuBtn.addEventListener('click', (e) => {
+      const open = menuDropdown.style.display === 'block';
+      menuDropdown.style.display = open ? 'none' : 'block';
+      menuBtn.setAttribute('aria-expanded', !open);
+    });
+    // close dropdown on click outside
+    document.addEventListener('click', (e) => {
+      if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+        menuDropdown.style.display = 'none';
+        menuBtn.setAttribute('aria-expanded', false);
+      }
+    });
+
+    // Dark mode toggle
+    toggleDark.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      menuDropdown.style.display = 'none';
+    });
+
+    // Scroll progress bar
+    function updateProgress() {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progress.style.width = pct + '%';
     }
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
 
-    // Active Tab Highlight
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav a");
+    // Back to top visibility
+    window.addEventListener('scroll', () => {
+      if ((window.scrollY || window.pageYOffset) > 400) backTop.style.display = 'block';
+      else backTop.style.display = 'none';
+    });
+    backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
+    // Active nav highlighting while scrolling
+    function activateNavOnScroll(){
+      let currentId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.pageYOffset >= top) currentId = sec.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === ('#' + currentId));
+      });
+    }
+    window.addEventListener('scroll', activateNavOnScroll);
+    window.addEventListener('load', activateNavOnScroll);
+
+    // Smooth behaviour already by CSS, but ensure offset for sticky nav (optional small offset when clicking)
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        const y = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({top: y, behavior: 'smooth'});
+      });
+    });
+
+    // Skill bars animation on scroll into view
+    function animateSkills(){
+      const triggerAt = window.innerHeight * 0.85;
+      skillInners.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < triggerAt){
+          const pct = el.getAttribute('data-percent') || 60;
+          el.style.width = pct + '%';
         }
       });
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
-        }
-      });
+    }
+    window.addEventListener('scroll', animateSkills);
+    window.addEventListener('load', animateSkills);
+
+    // Typing effect for tagline
+    const phrases = ["Mechanical Design Engineer", "CAD & Product Development", "GD&T, Plastics & Automation", "Aspiring ML Engineer"];
+    const typeEl = document.getElementById('typeText');
+    let pIndex = 0, cIndex = 0, typing = true;
+    function typeLoop(){
+      const current = phrases[pIndex];
+      if (typing){
+        typeEl.textContent = current.slice(0, cIndex + 1);
+        cIndex++;
+        if (cIndex === current.length){ typing = false; setTimeout(typeLoop, 900); return; }
+        setTimeout(typeLoop, 70);
+      } else {
+        typeEl.textContent = current.slice(0, cIndex - 1);
+        cIndex--;
+        if (cIndex === 0){ typing = true; pIndex = (pIndex + 1) % phrases.length; setTimeout(typeLoop, 300); return; }
+        setTimeout(typeLoop, 40);
+      }
+    }
+    window.addEventListener('load', () => {
+      typeLoop();
+      // ensure skills animate on load if already in view
+      animateSkills();
     });
   </script>
 </body>
